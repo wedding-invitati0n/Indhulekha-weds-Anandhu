@@ -186,21 +186,40 @@
                     </div>
                 </div>
 
-                <div class="overflow-x-hidden">
-                    <div class="py-2" data-aos="fade-right" data-aos-duration="1500">
-                    <h2 class="font-esthetic m-0 py-2" style="font-size: 2rem;">Wedding </h2>
-                    <p style="font-size: 0.95rem;">Date: Suday, March 02 2025</p>
-                    <p style="font-size: 0.95rem;">Muhurtham: Between 11:30 AM to 12:30 PM</p>
-                    <p style="font-size: 0.95rem;">Location: Bride's Residence</p>
-                    </div>
-                    <div class="py-2" data-aos="fade-left" data-aos-duration="1500">
-                    <h2 class="font-esthetic m-0 py-2" style="font-size: 2rem;">Reception</h2>
-                    <p style="font-size: 0.95rem;">Date: Monady, March 03 2025</p>
-                    <p style="font-size: 0.95rem;">Time: 4:00 PM to 9:00 PM</p>
-                    </div>
-                    </div>
+            <div class="overflow-x-hidden">
+                  <div class="py-2" data-aos="fade-right" data-aos-duration="1500" id="wedding-details">
+                    <!-- Content will be loaded here dynamically -->
+                  </div>
+                  <div class="py-2" data-aos="fade-left" data-aos-duration="1500" id="reception-details">
+                    <!-- Content will be loaded here dynamically -->
+                  </div>
+            </div>
 
-               
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+  fetch('/data/config.json') // Correct path to data.json
+    .then(response => response.json())
+    .then(data => {
+      // Populate Wedding Details
+      const wedding = data.wedding;
+      document.getElementById('wedding-details').innerHTML = `
+        <h2 class="font-esthetic m-0 py-2" style="font-size: 2rem;">${wedding.title}</h2>
+        <p style="font-size: 0.95rem;">Date: ${wedding.date}</p>
+        <p style="font-size: 0.95rem;">Muhurtham: ${wedding.muhurtham}</p>
+        <p style="font-size: 0.95rem;">Location: ${wedding.location}</p>
+      `;
+
+      // Populate Reception Details
+      const reception = data.reception;
+      document.getElementById('reception-details').innerHTML = `
+        <h2 class="font-esthetic m-0 py-2" style="font-size: 2rem;">${preweddingfunction.title}</h2>
+        <p style="font-size: 0.95rem;">Date: ${preweddingfunction.date}</p>
+        <p style="font-size: 0.95rem;">Time: ${preweddingfunction.time}</p>
+      `;
+    })
+    .catch(error => console.error('Error loading content:', error));
+});
+            </script>
                 <div class="position-relative">
                     <div class="position-absolute floating fade-out" style="top: 0%; left: 5%;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="opacity-50" viewBox="0 0 16 16">
